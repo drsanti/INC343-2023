@@ -1,18 +1,16 @@
 
 import { SerialPort } from 'serialport'
-const PATH = `/dev/tty.Bluetooth-Incoming-Port`;
+const PATH = `/dev/tty.usbserial-140`;	// Warning! This is depended on your port!.
 const port = new SerialPort({
 	path: PATH,
 	baudRate: 115200,
 });
 
-/**
- * Check if the port ready for writing operation.
- * It it is ready, write a message/command to the port
- */
-if (port.isOpen) {
+port.on('open', () => {
+	/**
+	 * After the port is opened, write a message/command to the port (MCU).
+	 */
 	port.write(`led,1,2\r\n`); /** Toggle the LED0 */
-}
-else {
-	console.warn(`The port is not opened!`);
-}
+});
+
+

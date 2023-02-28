@@ -10,9 +10,8 @@
   "scripts": {
     "start": "node main.js"
   },
-  
   "dependencies": {
+    "nodemon": "^2.0.20",
     "serialport": "^10.5.0"
-  },
-  "devDependencies": {}
+  }
 }

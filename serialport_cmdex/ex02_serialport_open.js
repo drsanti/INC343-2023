@@ -12,7 +12,7 @@ import { SerialPort } from 'serialport'
 // const PATH = `COMxx`;
 
 /** For Mac, uncomment and modify a line below */
-// const PATH = `/dev/tty.xxx`;
+const PATH = `/dev/tty.usbserial-140`;
 
 
 /**
@@ -24,6 +24,21 @@ const port = new SerialPort({
 });
 
 /**
- * Print the details of the port object.
+ * The open event.
+ * This event is always emitted when the port is opened.
  */
-console.log(port);
+port.on('open', () => {
+
+	/**
+	 * Print the details of the port object.
+	 */
+	console.log(port);
+
+	/**
+	 * Print the information
+	 */
+	console.log(`The ${PATH} Ready!`);
+});
+
+
+
