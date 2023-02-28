@@ -11,8 +11,6 @@ const port = new SerialPort({
 const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
 parser.on('data', (buffer) => {
-	
-	buffer = `ok: psw,0,1,2`;
 
 	let s = buffer;
 
