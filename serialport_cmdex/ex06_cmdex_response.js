@@ -18,6 +18,13 @@ parser.on('data', (buffer) => {
 	let s = buffer;
 
 	/**
+	 * Note:
+	 * the `s` variable contains response message returned by MCU,
+	 * for example
+	 * `ok: psw,2,1,KEY_DOWN`
+	 */
+
+	/**
 	 * Check if the response message contains `ok: `
 	 */
 	if(s.indexOf(`ok: `) >= 0) {
@@ -31,6 +38,13 @@ parser.on('data', (buffer) => {
 		 * Split the string using the `:` separator
 		 */
 		let ss = s.split(`:`);
+
+		/**
+		 * Note: The `ss` is an two element array. 
+		 * Each element contains data like this:
+		 * ss[0] : `ok`
+		 * ss[1] : `psw,2,1,KEY_DOWN`
+		 */
 		
 		/**
 		 * Check number the string portions.
@@ -43,7 +57,9 @@ parser.on('data', (buffer) => {
 		}
 		else {
 			/**
-			 * Get the second portion.
+			 * Get the second portion from the ss array.
+			 * The 2nd portion contains something like this:
+			 * `psw,2,1,KEY_DOWN`
 			 */
 			s = ss[1];
 			
@@ -51,6 +67,14 @@ parser.on('data', (buffer) => {
 			 * Split the string using the `,` separator
 			 */
 			ss = s.split(`,`);
+
+			/**
+			 * Note: The `ss` an array contains data like this:
+			 * ss[0] : `psw`			<-- device name
+			 * ss[1] : `2`				<-- device id
+			 * ss[2] : `1`				<-- device status (status of thePSW)
+			 * ss[3] : `KEY_DOWN`		<-- device state (state of the PSW)
+			 */
 
 			/**
 			 * Print the string portions

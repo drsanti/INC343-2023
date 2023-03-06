@@ -11,7 +11,7 @@ const port = new SerialPort({
 
 
 console.log(`\nConnecting to the MCU via the ${PATH}.
-Press the Push Button Switches (PSW0-PSW3) and check the result.\r\n`);
+Change the Potentiometers (POT0-POT3) and check the result.\r\n`);
 
 
 const parser = port.pipe(new ReadlineParser({ delimiter: '\r\n' }));
@@ -20,6 +20,10 @@ parser.on('data', (buffer) => {
 
 	let s = buffer;
 
+	/**
+	 * Note: `s` variable contains the MCU response message like this:
+	 * `ok: adc,1,620,91,-1`
+	 */
 	if(s.indexOf(`ok: `) >= 0) {
 		s = s.replace(/\s/g, "");
 		let ss = s.split(`:`);
@@ -27,51 +31,49 @@ parser.on('data', (buffer) => {
 			console.error(`Wrong format: ${buffer}`);
 		}
 		else {
-			s = ss[1];
+			s = ss[1];			// `adc,1,620,91,-1`
 			ss = s.split(`,`);
 
 			/**
 			 * Note: The `ss` an array contains data like this:
-			 * ss[0] : `psw`			<-- device name
-			 * ss[1] : `2`				<-- device id
-			 * ss[2] : `1`				<-- device status (status of thePSW)
-			 * ss[3] : `KEY_DOWN`		<-- device state (state of the PSW)
+			 * ss[0] : `adc`			<-- device name
+			 * ss[1] : `1`				<-- device id (adc channel)
+			 * ss[2] : `620`			<-- adc value
+			 * ss[3] : `91`				<-- delta value
+			 * ss[4] : `-1`				<-- change direction (-1: decrease, +1: increase)
 			 */
 
 			/**
-			 * Push Button Switch (PSW)
+			 * Analog-to-Digital Converter (ADC)
 			 */
-			if(ss[0] === `psw` && ss.length == 4) {
+			if(ss[0] === `adc` && ss.length == 5) {
 				
 				/**
-				 * Get id of the PSW.
+				 * Get the id of the ADC.
 				 */
-				let id = ss[1];		// id: 0, 1, 2, 3
+				let id = ss[1];			// id: 0, 1, 2, 3
 
 				/**
-				 * Get status of the PSW.
+				 * Get the value of the ADC.
 				 */
-				let status = ss[2];	// 0: OFF, 1: ON
+				let status = ss[2];		// 10-bit data (0-1023)
 
 				/**
-				 * Get state name of the PSW.
+				 * Get the delta value of the ADC.
 				 */
-				let state = ss[3];	// KEY_DOWN, KEY_UP
+				let delta = ss[3];		// delta value
+
+				/**
+				 * Get the delta value of the ADC.
+				 */
+				let direction = ss[4];	// -1: decrease, 1: increase
 
 
 				/**
 				 * Print information
 				 */
-				console.log(`MCU Response: ${ss[0]},${ss[1]},${ss[2]},${ss[3]}`);
+				console.log(`MCU Response: ${ss[0]},${ss[1]},${ss[2]},${ss[3]},${ss[4]}`);
 			}
-
-			/**
-			 * Analog-to-Digital Converter (ADC)
-			 */
-
-			/**
-			 * Check the next example
-			 */
 		}
 	}
 	else {
