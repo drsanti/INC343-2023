@@ -30,7 +30,7 @@ function processPsw(id, status, state) {
 	/**
 	 * Example: Toggle LED0 and Generate Beep sound using PSW0.
 	 */
-	if(id == 0, status == 1) {
+	if(id == 0 && status == 1) {
 		port.write(`led,0,2\r\n`);
 		port.write(`buz,100,3500,50\r\n`);
 	}
@@ -86,12 +86,12 @@ function processAdc(id, value, delta, direction) {
 		port.write(`led,0,0\r\n`);	// Turn LED0 OFF
 		port.write(`led,3,0\r\n`);	// Turn LED3 OFF
 
-		if(direction == -1) {
-			port.write(`led,0,1\r\n`);			// Turn LED1 ON
+		if(direction == 'dec') {
+			port.write(`led,0,1\r\n`);		// Turn LED1 ON
 			port.write(`buz,100,1500,50\r\n`);	// Beep 100ms, 1.5kHz
 		}
-		else if(direction == 1) {
-			port.write(`led,3,1\r\n`);			// Turn LED3 ON
+		else if(direction == 'inc') {
+			port.write(`led,3,1\r\n`);		// Turn LED3 ON
 			port.write(`buz,100,3500,50\r\n`);	// Beep 100ms, 3.5kHz
 		}
 	}
