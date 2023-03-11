@@ -40,7 +40,7 @@ function processPsw(id, status, state) {
 	 * Problem #1: Toggle LEDs using PSWs.
 	 * Requirements:
 	 *  - The LEDi will be toggled when the PSWi is pressed (i is Id of the PSW and LED).
-	 *    For example, if the PSW2 is pressed, the LED2 is Toggle.
+	 *    For example, if the PSW2 is pressed, the LED2 is Toggled.
 	 */
 
 	/**
@@ -68,7 +68,7 @@ function processPsw(id, status, state) {
  *  - id: Id of the PSW (0, 1, 2, 3).
  *  - value: Value of the ADC (10-bit data, 0-1023).
  *  - delta: Delta value of the ADC (current value - previous value).
- *  - direction: Change direction of the ADC (-1: decrease, 1: increase).
+ *  - direction: Change direction of the ADC (-1 or dec: decrease, 1 or inc: increase).
  */
 function processAdc(id, value, delta, direction) {
 
@@ -76,8 +76,8 @@ function processAdc(id, value, delta, direction) {
 	/**
 	 * Example: Generate the Beep sound when the analog input channel 1 (ADC1, LDR)
 	 * is changed with the delta value greater than 30.
-	 * If the direction is -1 (decrease), generate beep sound 100ms, 1.5kHz, turn LED0 ON.
-	 * If the direction is  1 (increase), generate beep sound 100ms, 3.5kHz, turn LED3 ON
+	 * If the direction is -1 or dec (decrease), generate beep sound 100ms, 1.5kHz, turn LED0 ON.
+	 * If the direction is  1 or inc (increase), generate beep sound 100ms, 3.5kHz, turn LED3 ON
 	 */
 	if(id == 1 && delta > 30) {
 
@@ -91,7 +91,7 @@ function processAdc(id, value, delta, direction) {
 			port.write(`buz,100,1500,50\r\n`);	// Beep 100ms, 1.5kHz
 		}
 		else if(direction == 'inc') {
-			port.write(`led,3,1\r\n`);		// Turn LED3 ON
+			port.write(`led,3,1\r\n`);			// Turn LED3 ON
 			port.write(`buz,100,3500,50\r\n`);	// Beep 100ms, 3.5kHz
 		}
 	}
@@ -161,7 +161,7 @@ parser.on('data', (buffer) => {
 			 * ss[1] : `1`				<-- device id (adc channel)
 			 * ss[2] : `620`			<-- adc value
 			 * ss[3] : `91`				<-- delta value
-			 * ss[4] : `-1`				<-- change direction (-1: decrease, +1: increase)
+			 * ss[4] : `dec`			<-- change direction (-1 or dec: decrease, +1 or inc: increase)
 			 */
 			else if(ss[0] === `adc` && ss.length == 5) {
 				processAdc(ss[1], ss[2], ss[3], ss[4]);
