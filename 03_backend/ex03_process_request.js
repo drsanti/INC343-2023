@@ -53,6 +53,6 @@ http.createServer((req, res) => {
 	 * 
 	 */
 	console.log(`\nOpen a web browser and go to http://localhost:${PORT} or http://127.0.0.1:${PORT}`);
-	console.log(`You can click one of the link above to open the default web browser.`);
+	console.log(`You can click one of the links above to open the default web browser.`);
 	console.log(`After the server is restarted, refresh the web browser to check the latest result.`);
 });
