@@ -1,5 +1,6 @@
 /**
  * Import the `http` module.
+ * Add `"type": "module"` in the `package.json` to use ES6.
  */
 import * as http from 'http';
 import * as querystring from 'querystring';
@@ -34,14 +35,14 @@ http.createServer((req, res) => {
 	/** 
 	 * Write a response message (plain text) to client.
 	 */
-	res.write('Welcome to the backend programming world!');
+	res.write(`${req.method}: ${req.url}`);
 
 	/**
 	 * Write end response to client.
 	 */
 	res.end();
 
-}).listen(3000, () => {
+}).listen(PORT, () => {
 	/** The server object listens on the port PORT */
 	console.log(`\nServer started and listening at port ${PORT}`);
 

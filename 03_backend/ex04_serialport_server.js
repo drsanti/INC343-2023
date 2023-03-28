@@ -69,7 +69,7 @@ const startServer = () => {
 		 */
 		res.end();
 
-	}).listen(3000, () => {
+	}).listen(PORT, () => {
 		/** The server object listens on the port PORT */
 		console.log(`\nServer started and listening at port ${PORT}`);
 
