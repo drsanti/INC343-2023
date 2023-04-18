@@ -1,71 +1,38 @@
-```
-npm init svelte@next sveltekit-tailwindcss    
-```
+# 05_iot_app
 
 
-```
-npm install -D tailwindcss postcss autoprefixer
-```
+## Run the application
+
+`cd` in to the `05_iot_app` and run the command `npm run dev`
 
 
-```
-npx tailwindcss init -p
-```
+## Hide setting/configuration files
 
-
-Modify the `content`  in the `tailwind.config.cjs` as follow:
-
-```
-content: ['./src/**/*.{svelte, html, jsm ts}'],
-```
-
-
-Create `app.css` in `src` directory, and add the following lines:
-
-```
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-```
-
-Create `+layout.svelte` file in `src/routes` and add the following lines:
-
-```
-<script>
-    import '../app.css';
-</script>
-
-<slot/>
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
-
-<!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
+Open the `settings.json` in the `.vscode` and add the following lines:
 
 ```
 
-Add a line below in the `+page.svelte` file:
-
-```
-<h1 class="text-3xl font-bold underline">Hello World</h1>
-```
-
-
-Add a new font by adding a line below to the `app.css`.
-
-```
-@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
-```
-
-Then, add the following line into the `extend` in the `tailwind.config.cjs.`.
-```
-fontFamily: {
-    body: ['Lato']
+{
+    "svelte.enable-ts-plugin": true,
+    "files.exclude": {
+        "**/.eslintignore": true,
+        "**/.eslintrc.cjs": true,
+        "**/.gitignore": true,
+        "**/.npmrc": true,
+        "**/.prettierignore": true,
+        "**/.prettierrc": true,
+        "**/.svelte-kit": true,
+        "**/node_modules": true,
+        "**/package-lock.json": true,
+        "**/package.json": true,
+        "**/postcss.config.cjs": true,
+        "**/static": true,
+        "**/svelte.config.js": true,
+        "**/tailwind.config.cjs": true,
+        "**/tsconfig.json": true,
+        "**/vite.config.js": true
+    },
 }
+
 ```
-
-
-
-
-
-
-
 
