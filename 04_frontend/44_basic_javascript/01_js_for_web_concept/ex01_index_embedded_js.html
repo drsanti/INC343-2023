@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ex01 embedded JavaScript </title>
+
+    <!-- Link the ex01_style.css to this html -->
+    <link rel="stylesheet" href="./ex01_style.css">
+
+</head>
+<body>
+
+    <button id="btn1">Add Random Number</button>
+
+    <!-- Embedded JavaScript Code -->
+    <script>
+        console.log(`Click the button to add a new element`);
+
+        let b = document.getElementById(`btn1`);
+        b.addEventListener(`click`, ()=>{
+            let ele = document.createElement(`h2`);
+            ele.innerHTML = Math.random().toFixed(3);
+            document.body.append(ele);
+        });
+    </script>
+
+</body>
+</html>

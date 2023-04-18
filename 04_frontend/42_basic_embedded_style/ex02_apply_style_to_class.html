@@ -1,0 +1,64 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ex02 apply style to class</title>
+        
+        <!-- style tag -->
+        <style>
+
+            body {
+                background: black;
+                color: white;
+            }
+            h1,h2 {
+                color: cyan;
+            }
+
+            p{
+                color: yellow;
+            }
+
+            /* . (dot) denotes `class` */
+            .red-text{
+                color: red;
+                font-weight: 400;
+            }
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <!-- No class is assigned -->
+        <h1>This is a text in h1</h1>
+        <h2>This is a text in h2</h2>
+        <h3>This is a text in h3</h3>
+        
+        <p>This is paragraph 1</p>
+        <p>This is paragraph 2</p>
+        <p>This is paragraph 3</p>
+
+        This is <span>simple</span> text
+
+
+        <hr>
+
+        <!-- Some tags are assigned by `red-text` class -->
+
+        <h1>This is a text in h1</h1>
+        <h2 class="red-text">This is a text in h2</h2>
+        <h3>This is a text in h3</h3>
+        
+        <p>This is paragraph 1</p>
+        <p class="red-text">This is paragraph 2</p>
+        <p>This is paragraph 3</p>
+
+        This is <span class="red-text">simple</span> text
+
+
+    </body>
+
+</html>

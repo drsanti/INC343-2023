@@ -1,0 +1,26 @@
+body {
+    background: black;
+    color: white;
+}
+h1,h2 {
+    color: cyan;
+}
+
+p{
+    color: yellow;
+}
+
+/* . (dot) denotes `class` */
+.red-text{
+    color: red;
+    font-weight: 400;
+}
+
+#special1 {
+    color: lime;
+    font-style: italic;
+}
+#special2 {
+    color: rgb(255, 31, 199);
+    font-style: italic;
+}

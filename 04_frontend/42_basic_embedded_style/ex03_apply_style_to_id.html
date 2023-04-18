@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ex03 apply style to id</title>
+        
+        <!-- style tag -->
+        <style>
+
+            body {
+                background: black;
+                color: white;
+            }
+            h1,h2 {
+                color: cyan;
+            }
+
+            p{
+                color: yellow;
+            }
+
+            /* . (dot) denotes `class` */
+            .red-text{
+                color: red;
+                font-weight: 400;
+            }
+
+            #special1 {
+                color: lime;
+                font-style: italic;
+            }
+            #special2 {
+                color: rgb(255, 31, 199);
+                font-style: italic;
+            }
+
+
+        </style>
+
+    </head>
+
+    <body>
+
+        <!-- No class is assigned -->
+        <h1>This is a text in h1</h1>
+        <h2>This is a text in h2</h2>
+        <h3>This is a text in h3</h3>
+        
+        <p>This is paragraph 1</p>
+        <p>This is paragraph 2</p>
+        <p>This is paragraph 3</p>
+
+        This is <span>simple</span> text
+
+        <hr>
+
+        <!-- Some tags are assigned by `red-text` class -->
+
+        <h1>This is a text in h1</h1>
+        <h2 class="red-text">This is a text in h2</h2>
+        <h3>This is a text in h3</h3>
+        
+        <p>This is paragraph 1</p>
+        <p class="red-text">This is paragraph 2</p>
+        <p>This is paragraph 3</p>
+
+        This is <span class="red-text">simple</span> text
+
+        <hr>
+
+         <!-- Some tags have id `special1` and `special2`  -->
+
+         <h1 id="special">This is a text in h1</h1>
+         <h2 id="special2" class="red-text">This is a text in h2</h2>
+         <h3>This is a text in h3</h3>
+         
+         <p>This is paragraph 1</p>
+         <p class="red-text">This is paragraph 2</p>
+         <p id="special2">This is paragraph 3</p>
+ 
+         This is <span class="red-text">simple</span> text
+ 
+
+    </body>
+
+</html>
