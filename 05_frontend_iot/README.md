@@ -1,17 +1,27 @@
-# 05_iot_app
+# 05_frontend_iot
 
 
-## Run the application
+## Install Node.js
+Node.js version 18 or higher is required.
+To check the version of the Node.js, run the command `node -v`
 
-`cd` in to the `05_iot_app` and run the command `npm run dev`
+
+## Install dependencies
+
+`cd` into the `05_frontend_iot` and run the command `npm install`
 
 
-## Hide setting/configuration files
+## Run the server
+
+`cd` in to the `05_frontend_oit` and run the command `npm run dev`.
+Press `CMD` and click the `url` `to open the application on a default web browser.
+
+
+## Hide setting/configuration files (optional)
 
 Open the `settings.json` in the `.vscode` and add the following lines:
 
 ```
-
 {
     "svelte.enable-ts-plugin": true,
     "files.exclude": {
@@ -33,6 +43,5 @@ Open the `settings.json` in the `.vscode` and add the following lines:
         "**/vite.config.js": true
     },
 }
-
 ```
 
