@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <title>EX06</title>
+        <style>
+
+            /* https://css-tricks.com/snippets/css/a-guide-to-flexbox/  */
+            
+            body{
+                background-color: #222;
+                color: #cfc;
+            }
+            .container{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                background-color: #000;
+                border-radius: 10px;
+                height: 200px;
+            }
+            #counter{
+                color: #888;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>EX06 Page</h1>
+            <h4 id="counter">Counter: 0</h4>
+        </div>
+        <script>
+            let counter = 0;
+            setInterval(() => {
+                document.getElementById("counter").innerHTML = `counter: ${counter++}`;
+            }, 1000);
+        </script>
+    </body>
+</html>

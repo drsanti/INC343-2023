@@ -13,7 +13,11 @@ body{
     color: #fff;
 }
 
-/* .btn{
-    @apply bg-blue-300 rounded-full py-2 px-3 uppercase text-xs font-bold cursor-pointer tracking-wider;
-} */
 
+.btn-led-inv{
+    @apply md:h-24 lg:h-32 w-1/4 mx-1 px-3 py-2 rounded-md hover:text-yellow-200 hover:bg-black active:text-red-500 active:bg-blue-900;
+}
+
+.btn-container {
+    @apply flex w-full bg-stone-700 m-2 p-4 rounded-lg items-center justify-evenly
+}
