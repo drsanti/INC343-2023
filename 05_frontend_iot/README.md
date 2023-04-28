@@ -21,7 +21,8 @@ Press `CMD` and click the `url` `to open the application on a default web browse
 
 Open the `settings.json` in the `.vscode` and add the following lines:
 
-```
+```js
+
 {
     "svelte.enable-ts-plugin": true,
     "files.exclude": {
@@ -43,5 +44,36 @@ Open the `settings.json` in the `.vscode` and add the following lines:
         "**/vite.config.js": true
     },
 }
+
 ```
 
+## Disable Warning message on `@apply`
+ - Install `Stylelint` extension.
+ - create a new file name `stylelint.config.js`.
+ - Add the following lines in the `stylelint.config.js`.
+
+```js
+
+module.exports = {
+    rules: {
+        'at-rule-no-unknown': [
+            true,
+            {
+                ignoreAtRules: ['tailwind', 'apply', 'variants', 'responsive', 'screen']
+            }
+        ],
+        'declaration-block-trailing-semicolon': null,
+        'no-descending-specificity': null
+    }
+}
+
+```
+
+- Add these two lines in to the `settings.json`
+
+```js
+
+"scss.validate": false,
+"css.validate": false
+
+```

@@ -17,12 +17,17 @@
         "**/tailwind.config.cjs": true,
         "**/tsconfig.json": true,
         "**/vite.config.js": true,
-        "**/app.css": false,
         "**/app.d.ts": true,
+        "**/stylelint.config.js": true,
+        "**/README.md": true,
         "**/app.html": true,
-        "**/README.md": true
+        "**/app.css": true,
     },
     "cSpell.words": [
+        "npmrc",
+        "stylelint",
         "xhttp"
     ],
+    "scss.validate": false,
+    "css.validate": false
 }
