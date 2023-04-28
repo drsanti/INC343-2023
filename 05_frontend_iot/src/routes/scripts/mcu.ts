@@ -1,58 +1,49 @@
-import { json } from "@sveltejs/kit";
+// import { json } from "@sveltejs/kit";
 
 
+export type McuResponse = {
+    target: string,
+    id: string,
+    action: string,
+    status: string,
+    update: string,
+};
 
-export default class Mcu {
 
+export class Mcu {
 
-    xhttp: XMLHttpRequest;
-    url = `http://127.0.0.1:3300`;
+    static url = `http://127.0.0.1:3300`;
 
+    static xhttp: XMLHttpRequest;
 
-      //    const url = window.location.href.substr(31); //get query
-        //    const xhr = new XMLHttpRequest();
-        //    xhr.open("GET", url);
-
-        //    xhr.onload = () => {
-        //       resp = xhr.response;
-        //    }
-
-        //    xhr.send();
-
-    constructor() {
-        this.xhttp = new XMLHttpRequest();
+    public static initialize = () => {
+       if(!Mcu.xhttp) {
+            Mcu.xhttp = new XMLHttpRequest();
+            // console.log(Mcu.xhttp);
+       }
     }
 
 
-    public printJsonAsTable = (title: string, json: JSON) => {
+    public static printJsonAsTable = (title: string, json: McuResponse) => {
         console.group(title);
         console.table(json);  
         console.groupEnd();          
     }
 
-    public sendCommand = (command:string) : Promise<JSON> => {
-
+    public static sendCommand = (command:string) : Promise<McuResponse> => {
 
         return new Promise((resolve) => {
 
-            this.xhttp.onreadystatechange = () => {
+            Mcu.xhttp.onreadystatechange = () => {
                 
-                if (this.xhttp.readyState == 4 && this.xhttp.status == 200) {
-                    const json = JSON.parse(this.xhttp.responseText);
+                if (Mcu.xhttp.readyState == 4 && Mcu.xhttp.status == 200) {
+                    const json = JSON.parse(Mcu.xhttp.responseText);
                     resolve(json);
                 }
             };
-            this.xhttp.open("GET", `${this.url}/${command}`, true);
-            this.xhttp.send();
+            Mcu.xhttp.open("GET", `${Mcu.url}/${command}`, true);
+            Mcu.xhttp.send();
         });
     }
 
-
-
-
-
-    public test = () =>  {
-
-        console.log(Math.round(100*Math.random()));
-    }
 }

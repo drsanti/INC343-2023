@@ -139,7 +139,7 @@ app.get('/', function (req, res, next) {
 });
 
 /**
- * Led Control
+ * Led ON/OFF/INV Control
  */
 app.get('/led/:id/:action', function (req, res, next) {
     const id = req.params.id;
@@ -150,14 +150,15 @@ app.get('/led/:id/:action', function (req, res, next) {
             "target": "led",
             "id": id,
             "action": action,
-            "status": status ? "success" : "failed"
+            "status": status ? "success" : "failed",
+            "update": `${getDateTime()}`
         })
     });
 });
 
 
 /**
- * Flash
+ * LED Flash Control
  */
 app.get('/fls/:id/:interval', function (req, res, next) {
     const id = req.params.id;
@@ -167,8 +168,18 @@ app.get('/fls/:id/:interval', function (req, res, next) {
             "target": "fls",
             "id": id,
             "action": action,
-            "status": status ? "success" : "failed"
+            "status": status ? "success" : "failed",
+            "update": `${getDateTime()}`
         })
     });
 });
 
+
+
+const getDateTime = () => {
+    const zp = (v) => v<10 ? `0${v}` : `${v}`;
+    const d = new Date();
+    const date = `${d.getFullYear()}-${zp(d.getMonth()+1)}-${zp(d.getDate())}`;
+    const time = `${zp(d.getHours())}:${zp(d.getMinutes())}:${zp(d.getSeconds())}`;
+    return `${date} ${time}`;
+}

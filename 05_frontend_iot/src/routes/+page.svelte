@@ -3,19 +3,39 @@
 
     import { onMount } from "svelte";
     
-    import Mcu from './scripts/mcu';
-   
-    let mcu: Mcu;
+    import { Mcu } from './scripts/mcu';
+
+    import type { McuResponse } from './scripts/mcu';
+
+    import Utils from './scripts/utils';
+
     
+   
+    let responseJson: McuResponse;
+    let dateTime = "";
+    let isOk = true;
+    let cls = "jv";
+
     onMount(async() => {
-        mcu = new Mcu();
+        Mcu.initialize();
     });
+
+
+    const updateDateTime = () => {
+        dateTime = `${Utils.getDateTime()}`;
+    }
 
     const clicked = async (e: any) : Promise<void> => {
        const id = e.target.attributes.id.value;
-       const json = await mcu.sendCommand(`led/${id}/inv`);
-       mcu.printJsonAsTable("MCU Response", json);
+       const json = await Mcu.sendCommand(`led/${id}/inv`);
+       responseJson = json;
+       isOk = responseJson.status != "failed";
+       updateDateTime();
+       Mcu.printJsonAsTable("MCU Response", responseJson);
     }
+
+   
+
 
 </script>
 
@@ -48,4 +68,39 @@
         <button id="0" on:click={clicked} class="btn-led-inv bg-blue-700">0-INV</button>
     </div>
 
+    {#if responseJson && JSON.stringify(responseJson) !== '{}'}
+        <p>{dateTime}</p>
+        <div class="jc">
+            <p>{`{`}</p>
+            {#each Object.entries(responseJson) as [key, value], index (key)}
+                <div class="flex">
+                    <span class="jk">{key}</span> : 
+                    {#if key==="status" && !isOk}<span class="je">{value}</span>
+                    {:else if key==="status" && isOk} <span class="jo">{value}</span>
+                    {:else}<span class="jv">{value}</span>{/if}
+                </div>
+            {/each}
+            <p>{`}`}</p>
+        </div>
+    {/if}
 </div>
+
+<style>
+    
+    .jc{/* JSON container */
+        @apply flex flex-col w-full indent-4 bg-black m-2 p-4 rounded-md text-gray-500;
+    }
+    .jk{/* JSON key */
+        @apply flex indent-8 w-24 text-lime-600;
+    }
+    .jv{/* JSON value */
+        @apply flex indent-4 text-blue-500;
+    }
+    .je{
+        @apply flex indent-4 text-red-400; 
+    }
+    .jo{
+        @apply flex indent-4 text-lime-400; 
+    }
+
+</style>
