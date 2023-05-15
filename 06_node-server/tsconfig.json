@@ -1,0 +1,19 @@
+{
+	"compilerOptions": {
+		"target": "es5",
+		"module": "commonjs",
+		"lib": [
+			"es6"
+		],
+		"allowJs": true,
+		"outDir": "build",
+		"rootDir": "src",
+		"strict": true,
+		"noImplicitAny": true,
+		"esModuleInterop": true,
+		"resolveJsonModule": true,
+		"noEmit": false,
+		"incremental": true, 	/* If this flag is set to true, the `npm run build` generates the `tsconfig.tsbuildinfo` */
+								/* If the file `tsconfig.tsbuildinfo` is not deleted, the new build files are not generated!. Remove it manually before run the `npm run build`*/							
+	}
+}

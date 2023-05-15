@@ -9,7 +9,7 @@
 
     import Utils from './scripts/utils';
 
-    
+
    
     let responseJson: McuResponse;
     let dateTime = "";
