@@ -35,7 +35,7 @@
 	}
 </script>
 
-<dir>
+<div>
 	<div>LED0: {led0Status}</div>
 	<button on:click={led0tgl} class="border">
 		Toggle LED0
@@ -43,7 +43,7 @@
 
 	<div class="{swClassName}"></div>
 	<div class="{textClass}">AI1: {adc1Value}</div>
-</dir>
+</div>
 
 <style>
 	.sw-on {
