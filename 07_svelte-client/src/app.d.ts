@@ -38,7 +38,7 @@ declare class McuAdcData {
 }
 
 declare class McuData {
-	led: McuLedData[];
-	psw: McuPswData[];
-	adc: McuAdcData[];
+	leds: McuLedData[];
+	psws: McuPswData[];
+	adcs: McuAdcData[];
 }

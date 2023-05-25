@@ -10,8 +10,9 @@
 
 	const toggle = async (e: any) => {
 		id = e.target.id;
+		mcuLink
 		mcuLink.requestData((mcuData: McuData) => {
-			data = mcuData.led[id];
+			data = mcuData.leds[id];
 
 			if (data.value) {
 				mcuLink.ledOff(id);

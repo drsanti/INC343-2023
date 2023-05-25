@@ -34,15 +34,15 @@ export const mcuLink = {
 	},
 
 	ledGet: (id: number): McuLedData => {
-		return _data.led[id];
+		return _data.leds[id];
 	},
 
 	pswGet: (id: number): McuPswData => {
-		return _data.psw[id]
+		return _data.psws[id]
 	},
 
 	adcGet: (id: number): McuAdcData => {
-		return _data.adc[id];
+		return _data.adcs[id];
 	},
 
 	// app.get('/api/:tag/:id/:act', async (req, res)

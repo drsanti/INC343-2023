@@ -33,9 +33,9 @@ export interface McuAdcData {
 }
 
 export interface McuData {
-	led: McuLedData[];
-	psw: McuPswData[];
-	adc: McuAdcData[];
+	leds: McuLedData[];
+	psws: McuPswData[];
+	adcs: McuAdcData[];
 }
 
 export type McuResponseParserMode = "SIM" | "MCU";
@@ -69,9 +69,9 @@ export class McuResponseParser extends EventEmitter {
 		}
 
 		this.mcuData = {
-			led: this.ledData,
-			psw: this.pswData,
-			adc: this.adcData,
+			leds: this.ledData,
+			psws: this.pswData,
+			adcs: this.adcData,
 		}
 
 		this.setOperationMode(mode);

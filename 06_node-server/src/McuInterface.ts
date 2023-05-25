@@ -119,7 +119,7 @@ export class McuInterface {
 
 					/** On Mac, the DRT abd RTS is active after the port is opened. */
 					serial.set({ dtr: false, rts: false });
-					await new Promise(resolve => setTimeout(resolve, 100));
+					await new Promise(resolve => setTimeout(resolve, 50));
 
 					parser.on("data", (data: string) => {
 						if (data.indexOf(`ok: `) !== -1) {
@@ -149,6 +149,8 @@ export class McuInterface {
 
 
 		this.serial = new SerialPort({ path: port, baudRate: 115200 });
+
+
 
 		const parser = this.serial.pipe(new ReadlineParser({ delimiter: '\r\n' }));
 
